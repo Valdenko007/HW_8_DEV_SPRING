@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>New page</title>
+    <div th:replace="main.html :: header"></div>
+</head>
+<body>
+<div th:replace="main.html :: navigation"></div>
+<div class="container">
+    <form action="#" th:action="@{/producer/new}" th:object="${producer}" method="post">
+        <div class="row">
+            <h2>New producer</h2>
+        </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <a href="/producer" type="button" class="btn btn-primary">Back</a>
+                <a href="" type="reset" class="btn btn-success">Reset</a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+            <label for="Name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Input name producer" name="name">
+
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-warning">Save</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

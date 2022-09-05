@@ -1,0 +1,14 @@
+goit:
+  host: localhost
+  port: 5432
+  basename: R
+  user: postgres
+  password: 1ms5:pass
+spring:
+  datasource:
+    url: jdbc:postgresql://${goit.host}:${goit.port}/${goit.basename}
+    username: ${goit.user}
+    password: ${goit.password}
+    driver-class-name:  org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

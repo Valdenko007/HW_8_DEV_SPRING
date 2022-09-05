@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Category page</title>
+    <div th:replace="main.html :: header"></div>
+</head>
+<body>
+<div th:replace="main.html :: navigation"></div>
+
+<div class="container">
+    <div class="row">
+        <h2>Producers page</h2>
+    </div>
+
+    <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <a href = "/" type="button" class="btn btn-primary">Back</a>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                <a href="/producer/new" type="button" class="btn btn-success">New</a>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Product</th>
+                <div sec:authorize="hasAuthority('ADMIN')"><th>Actions</th></div>
+
+
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producer: ${producers}">
+                    <td th:text="${producer.name}"/>
+
+                    <td><a
+                           th:href="@{|/product/${producer.id}|}"
+                           th:text=" ${producer.getProductDto().size()}"></a></td>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                    <td>
+
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <a th:href = "@{'/producer/edit/' + ${producer.id}}" type="button" class="btn btn-warning">Edit</a>
+                                <a th:href= "@{'/producer/remove/' + ${producer.id}}" type="button" class="btn btn-danger">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    </div>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Edit page</title>
+    <div th:replace="main.html :: header"></div>
+</head>
+<body>
+<div th:replace="main.html :: navigation"></div>
+<div class="container">
+    <form action="#" th:action="@{/user/update/{id}(id=${user.id})}" th:object="${user}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="row">
+            <h2>Edit user</h2>
+        </div>
+
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <a href="/user" type="button" class="btn btn-primary">Back</a>
+
+                <a href="" type="reset" form="name" class="btn btn-success">Reset</a>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group row">
+            <label for="FirstName" class="col-sm-2 col-form-label">FirstName</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{firstName}" id="firstName" placeholder="firstName" >
+
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label for="Lastname" class="col-sm-2 col-form-label">Lastname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{lastName}" id="lastName" placeholder="lastName" >
+
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label for="Password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" placeholder="Input password users" name="password">
+            </div>
+        </div>
+
+        <br>
+
+        <p>
+            <label>Roles:
+                <input type="checkbox" name="role"
+                       th:each="rol : ${allRoles}"
+                       th:text="${rol.name}"
+                       th:value="${rol.id}"
+                />
+            </label>
+        </p>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-warning">Edit</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
